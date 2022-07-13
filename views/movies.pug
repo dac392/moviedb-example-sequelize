@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet", href="styles.css")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato")
+        link(rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons")
+        title Movies
+    body
+        .nav 
+            a(href="/" class="btn") Add Movie 
+ 
+        ul
+            each movie in movies 
+                li(class="user")
+                    i(class="material-icons") account_box 
+                    h3 #{movie.title}
+                    p #{movie.runtime} minutes
+                    p #{movie.releaseDate}
+                    if movie.isAvailableOnVHS 
+                        p Available on VHS
+                    else 
+                        p Not Available on VHS
+        script(src="users.js") 

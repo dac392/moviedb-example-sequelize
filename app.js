@@ -10,7 +10,7 @@ router.set('view engine', 'pug');
 router.set('views', path.join(__dirname, 'views'));
 router.use(Router.static('public'));
 router.use(bodyParser.urlencoded({extended: false}));
-(async ()=>await db.sequelize.sync({force:true}))();
+(async ()=>await db.sequelize.sync({force:false}))();
 
 
 
@@ -21,17 +21,25 @@ router.get('/', (req, res)=>{
 
 /* POST create movie */
 router.post('/', async (req, res, next)=>{
-    console.log(req.body);
-    // const movie = await Movie.create(req.body);
-    // const list = await Movie.findALL();
-    // console.log(list.map(movies=>movies.toJSON()));
-    // res.redirect('/movies/', + movie.id);
+    
+    const movie = await Movie.create(req.body);
+    const list = await Movie.findAll();
+    //console.log(list.map(movies=>movies.toJSON()));
+    res.redirect('/movies');
+});
+
+/*GET /movies */
+router.get('/movies', async(req, res)=>{
+    const movies = await Movie.findAll();
+    const data = movies.map(m=>m.toJSON());
+    //console.log(data);
+    res.render('movies', {movies: data});
 });
 
 /* GET / retrieve movie to update */
 router.get('/:id/edit', async (req, res, next)=>{
     const movie = await Movie.findByPk(req.params.id);
-    res.render('mpvies/edit', {movie, title: 'Edit Movie'});
+    res.render('movies/edit', {movie, title: 'Edit Movie'});
 });
 
 /* PUT update movie */
