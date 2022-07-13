@@ -1,0 +1,77 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.5em;
+  }
+  ul{
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 0;
+  }
+  .center{
+    text-align: center;
+  }
+  h4{
+    padding: 0;
+    margin: 2% 30%;
+  }
+  form{
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 2% 30%;
+  }
+  input{
+    margin-bottom: 1em;
+  }
+
+  .radio{
+    margin: 0;
+  }
+  
+  .user{
+      border: 1px solid black;
+      padding: 10px;
+      margin: 5px;
+      width: 25%;
+      text-align: center;
+  }
+  .user i{
+      font-size: 8em;
+      display: block;
+      text-align: center;
+  }
+  
+  .nav{
+    margin: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #4CAF50; /* Green */
+    color: white;
+  }
+  .btn{
+    font-family: 'Courier New', Courier, monospace;
+    background-color: white; 
+    border: 2px solid #4CAF50;
+    color: black; 
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+  }
+  
+  
+  @media all and (max-width: 800px) {
+      ul {
+        flex-flow: row wrap;
+      }
+      .user {
+        width: 100%;
+      }
+    }
