@@ -15,12 +15,13 @@ html(lang="en")
         ul
             each movie in movies 
                 li(class="user")
-                    i(class="material-icons") account_box 
-                    h3 #{movie.title}
-                    p #{movie.runtime} minutes
-                    p #{movie.releaseDate}
-                    if movie.isAvailableOnVHS 
-                        p Available on VHS
-                    else 
-                        p Not Available on VHS
-        script(src="users.js") 
+                    a(href=`/${movie.id}`, class="display") 
+                        i(class="material-icons") account_box 
+                        h3 #{movie.title}
+                        p #{movie.runtime} minutes
+                        p #{movie.releaseDate}
+                        if movie.isAvailableOnVHS 
+                            p Available on VHS
+                        else 
+                            p Not Available on VHS
+        script(src="movies.js") 

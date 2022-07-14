@@ -36,6 +36,21 @@ router.get('/movies', async(req, res)=>{
     res.render('movies', {movies: data});
 });
 
+router.get('/:id', async (req, res, next)=>{
+    const { id } = req.params;
+    if(!isNaN(id)){
+        //console.log(req.params.id)
+        const m = await Movie.findByPk(req.params.id);
+        const data = m.toJSON();
+        res.render('film', { movie: data});
+    }else{
+        const error = new Error(`Oh no! Your request to the path: ${req.url} could not be fulfilled. Something may have been misspelled, or the path may not exist. Please try again or return to the home menue`);
+        error.status = 404;
+        error.url = req.url;
+        next(error);
+    }
+})
+
 /* GET / retrieve movie to update */
 router.get('/:id/edit', async (req, res, next)=>{
     const movie = await Movie.findByPk(req.params.id);
@@ -43,17 +58,17 @@ router.get('/:id/edit', async (req, res, next)=>{
 });
 
 /* PUT update movie */
-router.put('/:id', async (req, res, next) => {
-    const movie = await Movie.findByPk(req.params.id);
-    await movie.update(req.body);
-    res.redirect('/movies/'+movie.id);
-});
+// router.put('/:id', async (req, res, next) => {
+//     const movie = await Movie.findByPk(req.params.id);
+//     await movie.update(req.body);
+//     res.redirect('/movies/'+movie.id);
+// });
 
 /* Delete movie */
-router.post('/movies/:id/delete', async (req, res) => {
+router.get('/movies/:id/delete', async (req, res) => {
     const movieToDelete = await Movie. findByPk(req.params.id);
     await movieToDelete.destroy();
-    res.redirect('movies');
+    res.redirect('/movies');
 })
 
 router.listen(3000, ()=> console.log('App listening on port 3000'));

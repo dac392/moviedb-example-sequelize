@@ -9,6 +9,12 @@ body{
       flex-wrap: wrap;
       padding: 0;
   }
+  .container{
+    display: flex;
+    margin-top: 2em;
+    align-items: center;
+    flex-direction: column;
+  }
   .center{
     text-align: center;
   }
@@ -24,14 +30,22 @@ body{
   }
   input{
     margin-bottom: 1em;
-    font-size: 1.5em;
+    padding: 10px;
+
     cursor: pointer;
   }
 
   .radio{
     margin: 0;
   }
+  label{
+    cursor: pointer;
+  }
   
+  .display{
+    text-decoration: none;
+    color: black;
+  }
   .user{
       border: 1px solid black;
       padding: 10px;
@@ -70,8 +84,15 @@ body{
   
   
   @media all and (max-width: 800px) {
+
       ul {
         flex-flow: row wrap;
+      }
+      form{
+        margin: 2% 15%;
+      }
+      h4{
+        margin: 5% 15%;
       }
       .user {
         width: 100%;
